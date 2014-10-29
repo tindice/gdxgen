@@ -1,0 +1,16 @@
+GDXGen - Generador, Diseñador y Visualizador de diagramas UML y proyectos libGDX multiplataforma.
+
+    Caracteristicas deseadas:
+    
+        * Aplicacion multiplataforma
+                * Android
+                * iOS
+                * Desktop (Windows/Linux/OSX)
+        * Lee y edita archivos XMI.
+        * Genera diagramas a partir de codigo fuente.
+        * Genera codigo fuente a partir de diagramas.
+        * Sistema de plugins para extender parsers y generadores.
+        
+Copyright 2014-2015 Martin Leibner - tincorad.com
+GPL Licensed
+==========================================================================
