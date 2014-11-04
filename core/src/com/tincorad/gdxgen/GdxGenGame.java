@@ -3,13 +3,18 @@ package com.tincorad.gdxgen;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.tincorad.gdxgen.actores.Nodo;
 
 public class GdxGenGame extends Game implements InputProcessor {
@@ -17,9 +22,12 @@ public class GdxGenGame extends Game implements InputProcessor {
 	Texture img;
     ShapeRenderer sr;
 
-    private Punto p; // p = new Punto(50,50);
+    private Punto p;
 
     private Nodo n;
+
+
+    private Stage s;
 
     public GdxGenGame() {
         super();
@@ -30,12 +38,20 @@ public class GdxGenGame extends Game implements InputProcessor {
 		batch = new SpriteBatch();
 		img = new Texture("logo.png");
 
+        s = new Stage();
+
         p = new Punto(50,50);
         //sr = new ShapeRenderer();
 
-        n = new Nodo();
-        n.getStage().addActor(n);
-	}
+        n = new Nodo(80,80);
+        s.addActor(n);
+
+        s.addActor(new Nodo(100, 80, Color.ORANGE));
+        s.setDebugAll(true);
+
+        Gdx.input.setInputProcessor(this);
+
+    }
 
 	@Override
 	public void render () {
@@ -47,8 +63,8 @@ public class GdxGenGame extends Game implements InputProcessor {
 
         p.dibujar();
 
-        n.act(Gdx.graphics.getDeltaTime());
-        n.draw(batch, 1.0f);
+        s.act(Gdx.graphics.getDeltaTime());
+        s.draw();
 
 	}
 
@@ -76,8 +92,8 @@ public class GdxGenGame extends Game implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
 
-
-
+        n.addAction(Actions.moveBy(80,80, 0.5f, Interpolation.exp5In));
+        //Gdx.app.log("Evento", "Se movio");
 
         return false;
     }

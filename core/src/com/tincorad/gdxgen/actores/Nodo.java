@@ -9,15 +9,23 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  */
 public class Nodo extends Actor {
 
-    public Nodo() {
+    private static int TAMANO = 8;
 
-        this.setPosition(100,100);
-        this.setSize(4,4);
-        this.setColor(Color.GREEN);
+    public Nodo(float posicionX, float posicionY, Color color) {
+
+        this.setPosition(posicionX, posicionY);
+        this.setSize(TAMANO,TAMANO);
+        this.setColor(color);
+
+    }
+    public Nodo(float posicionX, float posicionY) {
+        this(posicionX, posicionY, Color.GREEN);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
+
+        //batch.get
     }
 }
